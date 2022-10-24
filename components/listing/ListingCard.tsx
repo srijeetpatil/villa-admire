@@ -3,7 +3,12 @@ import { AiFillStar } from "react-icons/ai";
 
 const ListingCard = () => {
   return (
-    <div className="col-span-3 cursor-pointer">
+    <div
+      className="col-span-3 cursor-pointer"
+      onClick={() => {
+        window.open("/villa/kd32f", "_blank");
+      }}
+    >
       <div className="relative w-full h-64">
         <Image
           src={
@@ -18,10 +23,15 @@ const ListingCard = () => {
         <div className="grid grid-cols-12">
           <span className="col-span-10 text-gray-100">Jibhi, India</span>
           <span className="flex items-center col-span-2 text-gray-100">
-            <AiFillStar className="text-gray-100"/> <span className="ml-2">4.8</span>
+            <AiFillStar className="text-gray-100" />{" "}
+            <span className="ml-2">4.8</span>
           </span>
-          <span className="col-span-12 text-gray-400 text-sm mt-1">1,324 Kms away</span>
-          <span className="col-span-12 text-gray-400 text-sm mt-1">17-24 October</span>
+          <span className="col-span-12 text-gray-400 text-sm mt-1">
+            1,324 Kms away
+          </span>
+          <span className="col-span-12 text-gray-400 text-sm mt-1">
+            17-24 October
+          </span>
           <span className="col-span-12 text-white mt-1">₹ 4,000 night</span>
         </div>
       </div>
