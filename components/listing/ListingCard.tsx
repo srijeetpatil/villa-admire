@@ -7,7 +7,7 @@ const ListingCard = () => {
       <div className="relative w-full h-64">
         <Image
           src={
-            "https://a0.muscache.com/im/pictures/miso/Hosting-26117817/original/9da40e3c-5846-4359-bb41-05c27b09a8f5.jpeg?im_w=1200"
+            "https://media.cntraveler.com/photos/53db2c146dec627b14a1fbe1/master/w_1024,h_768,c_limit/white-lodge-kalkan-turkey-matthew-simpson-1.jpg"
           }
           objectFit="cover"
           layout="fill"

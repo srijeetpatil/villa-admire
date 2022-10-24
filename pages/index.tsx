@@ -1,9 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import Layout from "../components/layouts/Layout";
 import ListingCard from "../components/listing/ListingCard";
 
+const cities = ["Mumbai", "Pune", "Alibaug", "Lonavala", "Chiplun", "Goa"];
+
 const Home: NextPage = () => {
+  const [activeCities, setActiveCities] = useState<Array<string>>([]);
+
   return (
     <Layout>
       <Head>
@@ -12,13 +17,30 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex items-center text-gray-100"></div>
-      <div className="grid grid-cols-12 gap-5">
-        <ListingCard />
-        <ListingCard />
-        <ListingCard />
-        <ListingCard />
-        <ListingCard />
+      <div className="sticky top-24 z-10 flex items-center lg:container mx-auto px-3 text-gray-100 text-xs mt-24 py-8 bg-primary">
+        {cities.map((city: string) => (
+          <span
+            key={city}
+            onClick={() => {
+              if (activeCities?.includes(city)) {
+                activeCities.splice(activeCities.indexOf(city), 1);
+                setActiveCities([...activeCities]);
+              } else {
+                setActiveCities([...activeCities, city]);
+              }
+            }}
+            className={`border border-gray-300 rounded-full px-3 py-1 cursor-pointer active:scale-95 mr-2 ${
+              activeCities.includes(city) ? "bg-blue-700" : "bg-transparent"
+            }`}
+          >
+            {city}
+          </span>
+        ))}
+      </div>
+      <div className="lg:container px-3 mx-auto grid grid-cols-12 gap-5 pb-32">
+        {Array.apply(0, Array(8)).map((arr, index) => (
+          <ListingCard key={index} />
+        ))}
       </div>
     </Layout>
   );
