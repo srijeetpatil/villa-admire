@@ -20,6 +20,7 @@ const nextConfig = {
       "media.cntraveler.com",
       "www.thearowanavilla.com",
       "thearowanavilla.com",
+      "d31dpzy4bseog7.cloudfront.net",
     ],
   },
 };
