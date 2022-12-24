@@ -9,7 +9,7 @@ const Villa = () => {
         <title>Villa in Lonavala</title>
       </Head>
 
-      <div className="lg:container px-3 mx-auto mt-32 mb-12">
+      <div className="lg:container px-3 mx-auto mt-24 lg:mt-28 mb-12">
         <MainDetails />        
       </div>
     </Layout>

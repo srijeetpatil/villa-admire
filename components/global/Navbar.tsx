@@ -3,6 +3,9 @@ import { ReactElement } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useMobile } from "../../utils/Hooks";
+import HamburgerMenu from "../Navbar/HamburgerMenu";
 
 interface Navbar {
   navbarBackground: "transparent" | "blur" | "default";
@@ -14,24 +17,41 @@ const navbarBackgroundStyles = {
   default: "bg-primary",
 };
 
+const categories = ["Buy", "Visit", "Build"];
+
 const Navbar = ({ navbarBackground = "default" }: Navbar): ReactElement => {
+  const router = useRouter();
+  const isMobile = useMobile();
+
   return (
     <header
-      className={`w-full text-gray-100 fixed z-10 top-0 ${navbarBackgroundStyles[navbarBackground]}`}
+      className={`w-full text-gray-100 fixed z-30 top-0 ${navbarBackgroundStyles[navbarBackground]}`}
     >
-      <div className="lg:container mx-auto flex items-center py-8">
+      <div className="lg:container mx-auto flex items-center py-4 lg:py-8">
         <Link href={`/`}>
           <a>
-            <span className="text-lg font-bold mx-8 ">Villa Admire</span>
+            <span className="text-lg font-bold mx-4 lg:mx-8">Houses</span>
           </a>
         </Link>
-        <span className="text-sm mx-8 text-gray-400">Buy</span>
-        <span className="text-sm mx-8 text-gray-400">Visit</span>
-        <span className="text-sm mx-8 text-gray-400">Build</span>
-        <div className="flex items-center bg-gray-700 rounded-full px-2 py-2 w-[15rem] mx-auto">
+        {categories.map((category: string) => {
+          const path = category.toLowerCase();
+          return (
+            <span
+              key={category}
+              className={`${
+                router.asPath === `/${path}`
+                  ? "bg-gray-700 text-gray-100 rounded-full"
+                  : "bg-none text-gray-400"
+              } hidden lg:block text-sm px-4 py-2 mx-4`}
+            >
+              <Link href={`/${path}`}>{category}</Link>
+            </span>
+          );
+        })}
+        <div className="flex items-center bg-gray-700 rounded-full px-2 py-2 w-auto lg:w-[15rem] mx-0 lg:mx-auto ml-auto">
           <input
             type="text"
-            className="w-full py-1 border-none outline-none bg-transparent text-sm ml-2"
+            className="hidden lg:block w-full py-1 border-none outline-none bg-transparent text-sm ml-2"
             autoComplete="off"
             placeholder="Search location"
           ></input>
@@ -39,19 +59,7 @@ const Navbar = ({ navbarBackground = "default" }: Navbar): ReactElement => {
             <FiSearch className="text-white text-lg" />
           </span>
         </div>
-        <div className="flex px-2 py-2 rounded-full relative ml-auto items-center bg-gray-700 cursor-pointer">
-          <Image
-            src={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn0C4lPDZ-CdkIO0mmgk9bMi5Ss49u0E7e9w&usqp=CAU"
-            }
-            alt={"Profile image"}
-            layout="fixed"
-            width={30}
-            height={30}
-            className="rounded-full"
-          />
-          <GiHamburgerMenu className="mx-3 text-xl" />
-        </div>
+        <HamburgerMenu />
       </div>
     </header>
   );
