@@ -4,7 +4,7 @@ import Head from "next/head";
 
 const Build = () => {
   return (
-    <Layout>
+    <Layout navbarBackground="transparent">
       <Head>
         <title>Build your dream house</title>
         <meta name="description" content="Houses.com" />
